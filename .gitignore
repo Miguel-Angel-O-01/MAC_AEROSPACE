@@ -1,0 +1,36 @@
+# --- Visual Studio ---
+.vs/
+*.user
+*.suo
+*.opensdf
+*.sdf
+*.cache
+*.accesstoken
+
+# --- Directorios de Compilación (BASURA QUE NO QUEREMOS) ---
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+Debug/
+Release/
+*.dll
+*.exe
+*.pdb
+*.ipdb
+*.iobj
+*.ilk
+*.lib
+*.exp
+*.tlog
+*.log
+*.idb
+*.lastbuildstate
+
+# --- Windows ---
+Thumbs.db
+Desktop.ini
+
+# --- Open CASCADE & Dependencias ---
+# Ignoramos cualquier copia local de las librerías gigantes si las tienes dentro
+# (Asumimos que las copiaste a bin, que ya está ignorado arriba)
