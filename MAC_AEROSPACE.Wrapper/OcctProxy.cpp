@@ -1,11 +1,11 @@
 #include "OcctProxy.h"
 
 namespace MacAerospace {
-    namespace Wrapper {
+    namespace Interop {
 
         // Constructor
         OcctProxy::OcctProxy() {
-            m_nativeEngine = new MotorDeIngenieria();
+            m_nativeEngine = new CadKermelSession();
         }
 
         // Destructor
@@ -25,37 +25,37 @@ namespace MacAerospace {
 
         bool OcctProxy::InitViewer(IntPtr windowHandle) {
             if (!m_nativeEngine) return false;
-            return m_nativeEngine->InicializarVentana(windowHandle.ToPointer());
+            return m_nativeEngine->InitViewerHandle(windowHandle.ToPointer());
         }
 
         void OcctProxy::Resize() {
-            if (m_nativeEngine) m_nativeEngine->Redimensionar();
+            if (m_nativeEngine) m_nativeEngine->ResizeController();
         }
 
         void OcctProxy::DrawCube() {
-            if (m_nativeEngine) m_nativeEngine->DibujarCuboPrueba();
+            if (m_nativeEngine) m_nativeEngine->RenderTestContext();
         }
 
         // --- MÉTODOS DE INPUT (MOUSE) ---
 
         void OcctProxy::MoveTo(int x, int y) {
-            if (m_nativeEngine) m_nativeEngine->MoverMouse(x, y);
+            if (m_nativeEngine) m_nativeEngine->OnMouseMove(x, y);
         }
 
         void OcctProxy::StartRotation(int x, int y) {
-            if (m_nativeEngine) m_nativeEngine->IniciarRotacion(x, y);
+            if (m_nativeEngine) m_nativeEngine->StartRotation(x, y);
         }
 
         void OcctProxy::Rotation(int x, int y) {
-            if (m_nativeEngine) m_nativeEngine->Rotar(x, y);
+            if (m_nativeEngine) m_nativeEngine->DoRotation(x, y);
         }
 
         void OcctProxy::Zoom(int x, int y) {
-            if (m_nativeEngine) m_nativeEngine->Zoom(x, y);
+            if (m_nativeEngine) m_nativeEngine->DoZoom(x, y);
         }
 
         void OcctProxy::Pan(int x, int y) {
-            if (m_nativeEngine) m_nativeEngine->Pan(x, y);
+            if (m_nativeEngine) m_nativeEngine->DoPan(x, y);
         }
     }
 }

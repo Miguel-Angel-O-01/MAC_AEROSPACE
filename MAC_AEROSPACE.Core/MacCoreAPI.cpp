@@ -5,12 +5,12 @@
 #include <Aspect_Handle.hxx>
 
 // --- CONSTRUCTOR ---
-MotorDeIngenieria::MotorDeIngenieria() {
+CadKermelSession::CadKermelSession() {
     // Vacío
 }
 
 // --- INICIALIZAR ---
-bool MotorDeIngenieria::InicializarVentana(void* windowHandle) {
+bool CadKermelSession::InitViewerHandle(void* windowHandle) {
     try {
         Handle(Aspect_DisplayConnection) dConnection = new Aspect_DisplayConnection();
         m_graphicDriver = new OpenGl_GraphicDriver(dConnection);
@@ -36,7 +36,7 @@ bool MotorDeIngenieria::InicializarVentana(void* windowHandle) {
 }
 
 // --- REDIMENSIONAR ---
-void MotorDeIngenieria::Redimensionar() {
+void CadKermelSession::ResizeController() {
     if (!m_view.IsNull()) {
         m_view->MustBeResized();
         m_view->Redraw();
@@ -44,7 +44,7 @@ void MotorDeIngenieria::Redimensionar() {
 }
 
 // --- DIBUJAR CUBO ---
-void MotorDeIngenieria::DibujarCuboPrueba() {
+void CadKermelSession::RenderTestContext() {
     if (m_context.IsNull()) return;
     TopoDS_Shape caja = BRepPrimAPI_MakeBox(100.0, 100.0, 100.0).Shape();
     Handle(AIS_Shape) cajaVis = new AIS_Shape(caja);
@@ -57,31 +57,31 @@ void MotorDeIngenieria::DibujarCuboPrueba() {
 
 // --- AQUÍ EMPIEZAN LAS FUNCIONES NUEVAS (FUERA DE LAS ANTERIORES) ---
 
-void MotorDeIngenieria::MoverMouse(int x, int y) {
+void CadKermelSession::OnMouseMove(int x, int y) {
     if (!m_context.IsNull()) {
         m_context->MoveTo(x, y, m_view, Standard_True);
     }
 }
 
-void MotorDeIngenieria::IniciarRotacion(int x, int y) {
+void CadKermelSession::StartRotation(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->StartRotation(x, y);
     }
 }
 
-void MotorDeIngenieria::Rotar(int x, int y) {
+void CadKermelSession::DoRotation(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Rotation(x, y);
     }
 }
 
-void MotorDeIngenieria::Zoom(int x, int y) {
+void CadKermelSession::DoZoom(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Zoom(0, 0, x, y);
     }
 }
 
-void MotorDeIngenieria::Pan(int x, int y) {
+void CadKermelSession::DoPan(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Pan(x, y);
     }

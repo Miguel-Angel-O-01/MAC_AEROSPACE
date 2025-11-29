@@ -16,20 +16,20 @@
 #include <OpenGl_GraphicDriver.hxx>
 #include <WNT_Window.hxx> 
 
-class MAC_CORE_API MotorDeIngenieria {
+class MAC_CORE_API CadKermelSession {
 public:
-    MotorDeIngenieria();
+    CadKermelSession();
 
-    bool InicializarVentana(void* windowHandle);
-    void Redimensionar();
-    void DibujarCuboPrueba();
+    bool InitViewerHandle(void* windowHandle);
+    void ResizeController();
+    void RenderTestContext();
 
     // --- NUEVAS FUNCIONES DE MOUSE (Faltaban aquí) ---
-    void MoverMouse(int x, int y);
-    void IniciarRotacion(int x, int y);
-    void Rotar(int x, int y);
-    void Zoom(int x, int y);
-    void Pan(int x, int y);
+    void OnMouseMove(int x, int y);
+    void StartRotation(int x, int y);
+    void DoRotation(int x, int y);
+    void DoZoom(int x, int y);
+    void DoPan(int x, int y);
 
 private:
     Handle(V3d_Viewer) m_viewer;

@@ -4,7 +4,7 @@
 using namespace System;
 
 namespace MacAerospace {
-    namespace Wrapper {
+    namespace Interop {
 
         public ref class OcctProxy
         {
@@ -25,7 +25,7 @@ namespace MacAerospace {
             void Pan(int x, int y);
 
         private:
-            MotorDeIngenieria* m_nativeEngine;
+            CadKermelSession* m_nativeEngine;
         };
     }
 }
