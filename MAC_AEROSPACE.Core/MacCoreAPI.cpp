@@ -28,7 +28,7 @@ bool CadKermelSession::InitViewerHandle(void* windowHandle) {
         m_view->SetWindow(wntWindow);
         if (!wntWindow->IsMapped()) wntWindow->Map();
 
-        m_view->SetBackgroundColor(Quantity_TOC_RGB, 0.2, 0.2, 0.2); // Gris oscuro
+        m_view->SetBackgroundColor(Quantity_TOC_RGB, 0.2, 0.2, 0.25); // Gris oscuro
         m_view->MustBeResized();
         return true;
     }
@@ -72,17 +72,20 @@ void CadKermelSession::StartRotation(int x, int y) {
 void CadKermelSession::DoRotation(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Rotation(x, y);
+        m_view->Redraw();
     }
 }
 
 void CadKermelSession::DoZoom(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Zoom(0, 0, x, y);
+        m_view->Redraw();
     }
 }
 
 void CadKermelSession::DoPan(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Pan(x, y);
+        m_view->Redraw();
     }
 }

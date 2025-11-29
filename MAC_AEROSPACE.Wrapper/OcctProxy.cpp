@@ -1,20 +1,20 @@
 #include "OcctProxy.h"
 
-namespace MacAerospace {
+namespace MAC_AEROSPACE {
     namespace Interop {
 
         // Constructor
-        OcctProxy::OcctProxy() {
+        CadSessionProxy::CadSessionProxy() {
             m_nativeEngine = new CadKermelSession();
         }
 
         // Destructor
-        OcctProxy::~OcctProxy() {
-            this->!OcctProxy();
+        CadSessionProxy::~CadSessionProxy() {
+            this->!CadSessionProxy();
         }
 
         // Finalizador
-        OcctProxy::!OcctProxy() {
+        CadSessionProxy::!CadSessionProxy() {
             if (m_nativeEngine != nullptr) {
                 delete m_nativeEngine;
                 m_nativeEngine = nullptr;
@@ -23,38 +23,38 @@ namespace MacAerospace {
 
         // --- MÉTODOS EXISTENTES ---
 
-        bool OcctProxy::InitViewer(IntPtr windowHandle) {
+        bool CadSessionProxy::InitViewer(IntPtr windowHandle) {
             if (!m_nativeEngine) return false;
             return m_nativeEngine->InitViewerHandle(windowHandle.ToPointer());
         }
 
-        void OcctProxy::Resize() {
+        void CadSessionProxy::Resize() {
             if (m_nativeEngine) m_nativeEngine->ResizeController();
         }
 
-        void OcctProxy::DrawCube() {
+        void CadSessionProxy::DrawCube() {
             if (m_nativeEngine) m_nativeEngine->RenderTestContext();
         }
 
         // --- MÉTODOS DE INPUT (MOUSE) ---
 
-        void OcctProxy::MoveTo(int x, int y) {
+        void CadSessionProxy::OnMouseMove(int x, int y) {
             if (m_nativeEngine) m_nativeEngine->OnMouseMove(x, y);
         }
 
-        void OcctProxy::StartRotation(int x, int y) {
+        void CadSessionProxy::StartRotation(int x, int y) {
             if (m_nativeEngine) m_nativeEngine->StartRotation(x, y);
         }
 
-        void OcctProxy::Rotation(int x, int y) {
+        void CadSessionProxy::DoRotation(int x, int y) {
             if (m_nativeEngine) m_nativeEngine->DoRotation(x, y);
         }
 
-        void OcctProxy::Zoom(int x, int y) {
+        void CadSessionProxy::Zoom(int x, int y) {
             if (m_nativeEngine) m_nativeEngine->DoZoom(x, y);
         }
 
-        void OcctProxy::Pan(int x, int y) {
+        void CadSessionProxy::Pan(int x, int y) {
             if (m_nativeEngine) m_nativeEngine->DoPan(x, y);
         }
     }

@@ -3,24 +3,24 @@
 
 using namespace System;
 
-namespace MacAerospace {
+namespace MAC_AEROSPACE {
     namespace Interop {
 
-        public ref class OcctProxy
+        public ref class CadSessionProxy
         {
         public:
-            OcctProxy();
-            ~OcctProxy();
-            !OcctProxy();
+            CadSessionProxy();
+            ~CadSessionProxy();
+            !CadSessionProxy();
 
             bool InitViewer(IntPtr windowHandle);
             void Resize();
             void DrawCube();
 
             // --- NUEVAS FUNCIONES DE MOUSE PARA C# ---
-            void MoveTo(int x, int y);
+            void OnMouseMove(int x, int y);
             void StartRotation(int x, int y);
-            void Rotation(int x, int y);
+            void DoRotation(int x, int y);
             void Zoom(int x, int y);
             void Pan(int x, int y);
 
