@@ -18,7 +18,7 @@ namespace MAC_AEROSPACE.App.Services
         {
             return _proxy.InitViewer(windowHandle);
         }
-
+        public bool LoadStep(string path) => _proxy.ImportStep(path);
         public void Resize() => _proxy.Resize();
         public void RenderTest() => _proxy.DrawCube();
 

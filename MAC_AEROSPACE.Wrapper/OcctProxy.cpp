@@ -1,4 +1,10 @@
+#include <Windows.h>
 #include "OcctProxy.h"
+#include <string>
+#include <iostream>
+using namespace System;
+using namespace System::Runtime::InteropServices;
+
 
 namespace MAC_AEROSPACE {
     namespace Interop {
@@ -56,6 +62,17 @@ namespace MAC_AEROSPACE {
 
         void CadSessionProxy::Pan(int x, int y) {
             if (m_nativeEngine) m_nativeEngine->DoPan(x, y);
+        }
+
+        bool CadSessionProxy::ImportStep(System::String^ path) {
+            if (!m_nativeEngine) return false;
+
+            // Conversión manual segura de .NET String a std::string
+            const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(path)).ToPointer();
+            std::string stdPath = chars;
+            Marshal::FreeHGlobal(IntPtr((void*)chars)); // Liberar memoria
+
+            return m_nativeEngine->ImportStepFile(stdPath.c_str());
         }
     }
 }

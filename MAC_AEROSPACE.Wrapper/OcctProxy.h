@@ -1,11 +1,10 @@
 #pragma once
 #include "MacCoreAPI.h" // Enlace con el Core
-
+#include <msclr/marshal_cppstd.h>
 using namespace System;
 
 namespace MAC_AEROSPACE {
     namespace Interop {
-
         public ref class CadSessionProxy
         {
         public:
@@ -14,6 +13,7 @@ namespace MAC_AEROSPACE {
             !CadSessionProxy();
 
             bool InitViewer(IntPtr windowHandle);
+            bool ImportStep(System::String^ path);
             void Resize();
             void DrawCube();
 

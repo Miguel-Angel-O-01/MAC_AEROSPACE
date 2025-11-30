@@ -23,20 +23,28 @@ namespace MAC_AEROSPACE.App.ViewModels
             _cadService = cadService;
         }
 
-        // Comando para el botón "Cargar Geometría"
         [RelayCommand]
         private void LoadGeometry()
         {
-            // 1. Dibujar
-            _cadService.RenderTest();
+            // Usamos el diálogo de archivos de Microsoft
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "STEP Files (*.stp;*.step)|*.stp;*.step|All files (*.*)|*.*",
+                Title = "Importar Geometría Aeroespacial"
+            };
 
-            // 2. Forzar redimensionado/repintado
-            _cadService.Resize();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string path = openFileDialog.FileName;
+                bool success = _cadService.LoadStep(path);
 
-            MessageBox.Show("Motor Gráfico Inicializado y Cubo Renderizado.", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (success)
+                    MessageBox.Show("Modelo importado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                    MessageBox.Show("Error al leer el archivo STEP.", "Falla Crítica", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
-
-        // Comando para "Análisis Estructural"
+            // Comando para "Análisis Estructural"
         [RelayCommand]
         private void RunAnalysis()
         {

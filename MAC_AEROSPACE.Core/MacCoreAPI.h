@@ -1,30 +1,37 @@
 #pragma once
 
-// Parches de compatibilidad OCCT
+// Parches de compatibilidad para evitar advertencias molestas
 #pragma warning(push)
 #pragma warning(disable: 4996) 
 #pragma warning(disable: 4251) 
 
+// Macro de Exportación (Vital para que C# lo vea)
 #ifdef MAC_AEROSPACE_CORE_EXPORTS
 #define MAC_CORE_API __declspec(dllexport)
 #else
 #define MAC_CORE_API __declspec(dllimport)
 #endif
 
+// Includes de Open CASCADE
 #include <AIS_InteractiveContext.hxx>
 #include <V3d_View.hxx>
 #include <OpenGl_GraphicDriver.hxx>
 #include <WNT_Window.hxx> 
 
-class MAC_CORE_API CadKermelSession {
+// La Clase Principal
+class MAC_CORE_API CadKernelSession {
 public:
-    CadKermelSession();
+    CadKernelSession(); // Constructor
 
+    // Funciones del Sistema
     bool InitViewerHandle(void* windowHandle);
     void ResizeController();
     void RenderTestContext();
 
-    // --- NUEVAS FUNCIONES DE MOUSE (Faltaban aquí) ---
+    // Función de Importación (¡Fíjate en el punto y coma final!)
+    bool ImportStepFile(const char* path);
+
+    // Funciones de Mouse
     void OnMouseMove(int x, int y);
     void StartRotation(int x, int y);
     void DoRotation(int x, int y);

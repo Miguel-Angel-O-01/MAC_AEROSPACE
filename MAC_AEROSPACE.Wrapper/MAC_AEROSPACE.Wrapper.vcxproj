@@ -83,6 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MAC_AEROSPACE_CORE_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\OpenCascade\occt-combined-release-no-pch\occt-vc14-64-combined\occt-vc14-64\inc;$(SolutionDir)MAC_AEROSPACE.Core</AdditionalIncludeDirectories>
+      <CompileAsWinRT>false</CompileAsWinRT>
     </ClCompile>
     <Link>
       <AdditionalDependencies>TKernel.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKGeomBase.lib;TKBRep.lib;TKService.lib;TKV3d.lib;TKOpenGl.lib;TKPrim.lib;TKTopAlgo.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>

@@ -118,7 +118,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>D:\OpenCascade\occt-combined-release-no-pch\occt-vc14-64-combined\occt-vc14-64\win64\vc14\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>TKernel.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKGeomBase.lib;TKBRep.lib;TKService.lib;TKV3d.lib;TKOpenGl.lib;TKPrim.lib;TKTopAlgo.lib;</AdditionalDependencies>
+      <AdditionalDependencies>TKernel.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKGeomBase.lib;TKBRep.lib;TKService.lib;TKV3d.lib;TKOpenGl.lib;TKPrim.lib;TKTopAlgo.lib;TKDESTEP.lib;TKXSBase.lib;TKDESTEP209.lib;TKSTEPAttr.lib;TKBrep.lib;TKIGES.lib;TKShHealing.lib;TKTopAlgo.lib;TKGeomBase.lib;TKG3d.lib;TKG2d.lib;TKMath.lib;TKernel.lib;TKPrim.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

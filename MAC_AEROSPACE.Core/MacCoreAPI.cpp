@@ -1,16 +1,24 @@
-#include "MacCoreAPI.h"
+#include "MacCoreAPI.h" 
+
+// Includes Geometría
 #include <BRepPrimAPI_MakeBox.hxx>
 #include <AIS_Shape.hxx>
 #include <Aspect_DisplayConnection.hxx>
 #include <Aspect_Handle.hxx>
 
+// Includes STEP
+#include <STEPControl_Reader.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Interface_Static.hxx>
+#include <Quantity_NameOfColor.hxx> // For colors
+
 // --- CONSTRUCTOR ---
-CadKermelSession::CadKermelSession() {
+CadKernelSession::CadKernelSession() {
     // Vacío
 }
 
 // --- INICIALIZAR ---
-bool CadKermelSession::InitViewerHandle(void* windowHandle) {
+bool CadKernelSession::InitViewerHandle(void* windowHandle) {
     try {
         Handle(Aspect_DisplayConnection) dConnection = new Aspect_DisplayConnection();
         m_graphicDriver = new OpenGl_GraphicDriver(dConnection);
@@ -28,7 +36,7 @@ bool CadKermelSession::InitViewerHandle(void* windowHandle) {
         m_view->SetWindow(wntWindow);
         if (!wntWindow->IsMapped()) wntWindow->Map();
 
-        m_view->SetBackgroundColor(Quantity_TOC_RGB, 0.2, 0.2, 0.25); // Gris oscuro
+        m_view->SetBackgroundColor(Quantity_TOC_RGB, 0.2, 0.2, 0.25);
         m_view->MustBeResized();
         return true;
     }
@@ -36,7 +44,7 @@ bool CadKermelSession::InitViewerHandle(void* windowHandle) {
 }
 
 // --- REDIMENSIONAR ---
-void CadKermelSession::ResizeController() {
+void CadKernelSession::ResizeController() {
     if (!m_view.IsNull()) {
         m_view->MustBeResized();
         m_view->Redraw();
@@ -44,7 +52,7 @@ void CadKermelSession::ResizeController() {
 }
 
 // --- DIBUJAR CUBO ---
-void CadKermelSession::RenderTestContext() {
+void CadKernelSession::RenderTestContext() {
     if (m_context.IsNull()) return;
     TopoDS_Shape caja = BRepPrimAPI_MakeBox(100.0, 100.0, 100.0).Shape();
     Handle(AIS_Shape) cajaVis = new AIS_Shape(caja);
@@ -55,35 +63,55 @@ void CadKermelSession::RenderTestContext() {
     m_view->FitAll();
 }
 
-// --- AQUÍ EMPIEZAN LAS FUNCIONES NUEVAS (FUERA DE LAS ANTERIORES) ---
+// --- IMPORTAR STEP ---
+bool CadKernelSession::ImportStepFile(const char* path) {
+    STEPControl_Reader reader;
 
-void CadKermelSession::OnMouseMove(int x, int y) {
-    if (!m_context.IsNull()) {
-        m_context->MoveTo(x, y, m_view, Standard_True);
+    IFSelect_ReturnStatus status = reader.ReadFile(path);
+
+    if (status == IFSelect_RetDone) {
+        reader.TransferRoots();
+        TopoDS_Shape shape = reader.OneShape();
+
+        Handle(AIS_Shape) newShape = new AIS_Shape(shape);
+        newShape->SetDisplayMode(1);
+        newShape->SetColor(Quantity_NOC_GREEN);
+
+        m_context->RemoveAll(Standard_False);
+        m_context->Display(newShape, Standard_False);
+
+        m_view->FitAll();
+        m_view->Redraw();
+
+        return true;
     }
+    return false;
 }
 
-void CadKermelSession::StartRotation(int x, int y) {
-    if (!m_view.IsNull()) {
-        m_view->StartRotation(x, y);
-    }
+// --- INPUT ---
+void CadKernelSession::OnMouseMove(int x, int y) {
+    if (!m_context.IsNull()) m_context->MoveTo(x, y, m_view, Standard_True);
 }
 
-void CadKermelSession::DoRotation(int x, int y) {
+void CadKernelSession::StartRotation(int x, int y) {
+    if (!m_view.IsNull()) m_view->StartRotation(x, y);
+}
+
+void CadKernelSession::DoRotation(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Rotation(x, y);
         m_view->Redraw();
     }
 }
 
-void CadKermelSession::DoZoom(int x, int y) {
+void CadKernelSession::DoZoom(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Zoom(0, 0, x, y);
         m_view->Redraw();
     }
 }
 
-void CadKermelSession::DoPan(int x, int y) {
+void CadKernelSession::DoPan(int x, int y) {
     if (!m_view.IsNull()) {
         m_view->Pan(x, y);
         m_view->Redraw();

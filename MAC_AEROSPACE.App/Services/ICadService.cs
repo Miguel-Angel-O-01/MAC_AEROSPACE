@@ -6,6 +6,7 @@ namespace MAC_AEROSPACE.App.Services
     public interface ICadService
     {
         bool InitializeViewer(IntPtr windowHandle);
+        bool LoadStep(string path);
         void Resize();
         void RenderTest();
 
