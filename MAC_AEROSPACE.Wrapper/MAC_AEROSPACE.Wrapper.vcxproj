@@ -149,8 +149,17 @@
     <Image Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MAC_AEROSPACE.ChaosCore\MAC_AEROSPACE.ChaosCore.vcxproj">
+      <Project>{38badce2-136f-4ac1-bc8b-a050271626e0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\MAC_AEROSPACE.Core\MAC_AEROSPACE.Core.vcxproj">
       <Project>{5943246c-99b2-4018-8f35-b36adec7fb26}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MAC_AEROSPACE.PhysicsCore\MAC_AEROSPACE.PhysicsCore.vcxproj">
+      <Project>{c41b97d9-4d5f-47f2-9ffa-33871ee3462f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MAC_AEROSPACE.XRCore\MAC_AEROSPACE.XRCore.vcxproj">
+      <Project>{b30dda95-a232-4663-a1a9-da329dbe6e64}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

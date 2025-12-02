@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MAC_AEROSPACE.Domain\MAC_AEROSPACE.Domain.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Logging\MAC_AEROSPACE.Logging.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.UDM\MAC_AEROSPACE.UDM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IoT\" />
+    <Folder Include="Avionics\" />
+    <Folder Include="Flight computers\" />
+    <Folder Include="Diagrams\" />
+    <Folder Include="PowerGrid\" />
+    <Folder Include="PCB\" />
+    <Folder Include="WireHarness\" />
+  </ItemGroup>
+
+</Project>

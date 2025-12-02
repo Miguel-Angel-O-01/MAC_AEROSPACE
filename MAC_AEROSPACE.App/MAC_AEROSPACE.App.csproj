@@ -10,6 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MAC_AEROSPACE.Domain\MAC_AEROSPACE.Domain.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Logging\MAC_AEROSPACE.Logging.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mark.Core\MAC_AEROSPACE.Mark.Core.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.Aerospace\MAC_AEROSPACE.Mod.Aerospace.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.Automotive\MAC_AEROSPACE.Mod.Automotive.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.Conceptual\MAC_AEROSPACE.Mod.Conceptual.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.Defense\MAC_AEROSPACE.Mod.Defense.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.Electrical\MAC_AEROSPACE.Mod.Electrical.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.IoTElectronics\MAC_AEROSPACE.Mod.IoTElectronics.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.RnD\MAC_AEROSPACE.Mod.I+D+i.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.Mod.Space\MAC_AEROSPACE.Mod.Space.csproj" />
+    <ProjectReference Include="..\MAC_AEROSPACE.UDM\MAC_AEROSPACE.UDM.csproj" />
     <ProjectReference Include="..\MAC_AEROSPACE.Wrapper\MAC_AEROSPACE.Wrapper.vcxproj" />
   </ItemGroup>
 
