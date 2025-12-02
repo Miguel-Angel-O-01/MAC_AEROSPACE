@@ -12,4 +12,15 @@
     <ProjectReference Include="..\MAC_AEROSPACE.UDM\MAC_AEROSPACE.UDM.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ElectronicWarfare\" />
+    <Folder Include="Ballistics\" />
+    <Folder Include="Alert and Detection Systems\" />
+    <Folder Include="DIRCM\" />
+    <Folder Include="Flares\" />
+    <Folder Include="Chaff\" />
+    <Folder Include="Radar\" />
+    <Folder Include="Weponts\" />
+  </ItemGroup>
+
 </Project>
